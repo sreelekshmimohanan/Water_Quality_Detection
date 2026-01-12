@@ -56,14 +56,26 @@
 {% if request.session.admin %}
                         <a href="http://127.0.0.1:8000/index" class="nav-item nav-link active">Home</a>
                         <a href="http://127.0.0.1:8000/viewusers" class="nav-item nav-link">View user</a>
+                        <a href="http://127.0.0.1:8000/view_feedback" class="nav-item nav-link">View Feedback</a>
                         <a href="http://127.0.0.1:8000/logout" class="nav-item nav-link">Logout</a>
                        {% elif request.session.uid %} 
                         <a href="http://127.0.0.1:8000/index" class="nav-item nav-link active">Home</a>
                         <a href="http://127.0.0.1:8000/profile" class="nav-item nav-link">Profile</a>
+                        <a href="http://127.0.0.1:8000/predict_potability" class="nav-item nav-link">Predict Potability</a>
+                        <a href="http://127.0.0.1:8000/prediction_history" class="nav-item nav-link">Prediction History</a>
+                        <a href="http://127.0.0.1:8000/add_feedback" class="nav-item nav-link">Add Feedback</a>
+                        <a href="http://127.0.0.1:8000/logout" class="nav-item nav-link">Logout</a>
+                       {% elif request.session.sid %}
+                        <a href="http://127.0.0.1:8000/index" class="nav-item nav-link active">Home</a>
+                        <a href="http://127.0.0.1:8000/staff_profile" class="nav-item nav-link">Staff Profile</a>
+                        <a href="http://127.0.0.1:8000/view_predictions" class="nav-item nav-link">View Predictions</a>
+                        <a href="http://127.0.0.1:8000/view_feedback" class="nav-item nav-link">View Feedback</a>
+                        <a href="http://127.0.0.1:8000/add_feedback" class="nav-item nav-link">Add Feedback</a>
                         <a href="http://127.0.0.1:8000/logout" class="nav-item nav-link">Logout</a>
                         {% else %}
                             <a href="http://127.0.0.1:8000/index" class="nav-item nav-link active">Home</a>
                         <a href="http://127.0.0.1:8000/register" class="nav-item nav-link">Register</a>
+                        <a href="http://127.0.0.1:8000/staff_register" class="nav-item nav-link">Staff Register</a>
                         <a href="http://127.0.0.1:8000/login" class="nav-item nav-link">Login</a>
                     </div>
                     {% endif %}

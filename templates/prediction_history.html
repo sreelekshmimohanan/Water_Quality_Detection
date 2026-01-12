@@ -1,0 +1,66 @@
+{% load static %}
+{% block content %}
+{% include 'header.html' %}
+<br><br><br>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title mb-4 text-center">Prediction History</h3>
+                    {% if predictions %}
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>pH</th>
+                                        <th>Hardness</th>
+                                        <th>Solids</th>
+                                        <th>Chloramines</th>
+                                        <th>Sulfate</th>
+                                        <th>Conductivity</th>
+                                        <th>Organic Carbon</th>
+                                        <th>Trihalomethanes</th>
+                                        <th>Turbidity</th>
+                                        <th>Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for pred in predictions %}
+                                        <tr>
+                                            <td>{{ pred.created_at|date:"Y-m-d H:i" }}</td>
+                                            <td>{{ pred.ph }}</td>
+                                            <td>{{ pred.Hardness }}</td>
+                                            <td>{{ pred.Solids }}</td>
+                                            <td>{{ pred.Chloramines }}</td>
+                                            <td>{{ pred.Sulfate }}</td>
+                                            <td>{{ pred.Conductivity }}</td>
+                                            <td>{{ pred.Organic_carbon }}</td>
+                                            <td>{{ pred.Trihalomethanes }}</td>
+                                            <td>{{ pred.Turbidity }}</td>
+                                            <td>
+                                                <span class="badge {% if pred.result == 'Potable' %}bg-success{% else %}bg-danger{% endif %}">
+                                                    {{ pred.result }}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <p class="text-center">No predictions found.</p>
+                    {% endif %}
+                    <div class="text-center mt-3">
+                        <a href="/predict_potability/" class="btn btn-primary">Make New Prediction</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,59 @@
+{% load static %}
+{% block content %}
+{% include 'header.html' %}
+<br><br><br>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title mb-4 text-center">All Feedback</h3>
+                    {% if feedbacks %}
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>User/Staff</th>
+                                        <th>Type</th>
+                                        <th>Subject</th>
+                                        <th>Message</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for feedback in feedbacks %}
+                                        <tr>
+                                            <td>
+                                                {% if feedback.user %}
+                                                    {{ feedback.user.name }}
+                                                {% elif feedback.staff %}
+                                                    {{ feedback.staff.name }}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if feedback.user %}
+                                                    User
+                                                {% elif feedback.staff %}
+                                                    Staff
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ feedback.subject }}</td>
+                                            <td>{{ feedback.message }}</td>
+                                            <td>{{ feedback.created_at|date:"Y-m-d H:i" }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <p class="text-center">No feedback found.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock %}

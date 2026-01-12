@@ -1,0 +1,79 @@
+{% load static %}
+{% block content %}
+{% include 'header.html' %}
+<br><br><br>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title mb-4 text-center">Predict Water Potability</h3>
+                    {% if result %}
+                        <div class="alert alert-success" role="alert">
+                            <strong>Prediction Result:</strong> The water is {{ result }}.
+                        </div>
+                        <h5>Input Data:</h5>
+                        <ul>
+                            <li>pH: {{ data.ph }}</li>
+                            <li>Hardness: {{ data.Hardness }}</li>
+                            <li>Solids: {{ data.Solids }}</li>
+                            <li>Chloramines: {{ data.Chloramines }}</li>
+                            <li>Sulfate: {{ data.Sulfate }}</li>
+                            <li>Conductivity: {{ data.Conductivity }}</li>
+                            <li>Organic Carbon: {{ data.Organic_carbon }}</li>
+                            <li>Trihalomethanes: {{ data.Trihalomethanes }}</li>
+                            <li>Turbidity: {{ data.Turbidity }}</li>
+                        </ul>
+                        <a href="/predict_potability/" class="btn btn-primary">Predict Again</a>
+                        <a href="/prediction_history/" class="btn btn-secondary">View History</a>
+                    {% else %}
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="ph" class="form-label">pH</label>
+                                <input type="number" step="0.01" class="form-control" id="ph" name="ph" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Hardness" class="form-label">Hardness</label>
+                                <input type="number" step="0.01" class="form-control" id="Hardness" name="Hardness" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Solids" class="form-label">Solids</label>
+                                <input type="number" step="0.01" class="form-control" id="Solids" name="Solids" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Chloramines" class="form-label">Chloramines</label>
+                                <input type="number" step="0.01" class="form-control" id="Chloramines" name="Chloramines" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Sulfate" class="form-label">Sulfate</label>
+                                <input type="number" step="0.01" class="form-control" id="Sulfate" name="Sulfate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Conductivity" class="form-label">Conductivity</label>
+                                <input type="number" step="0.01" class="form-control" id="Conductivity" name="Conductivity" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Organic_carbon" class="form-label">Organic Carbon</label>
+                                <input type="number" step="0.01" class="form-control" id="Organic_carbon" name="Organic_carbon" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Trihalomethanes" class="form-label">Trihalomethanes</label>
+                                <input type="number" step="0.01" class="form-control" id="Trihalomethanes" name="Trihalomethanes" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Turbidity" class="form-label">Turbidity</label>
+                                <input type="number" step="0.01" class="form-control" id="Turbidity" name="Turbidity" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Predict Potability</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock %}

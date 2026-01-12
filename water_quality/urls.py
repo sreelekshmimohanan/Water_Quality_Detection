@@ -23,17 +23,25 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('',views.first),
-    path('index/',views.index),
+    path('index/',views.index, name='index'),
     path('register/addreg',views.addreg),
     path('register/',views.register),
+    path('staff_register/',views.staff_register),
+    path('staff_register/add_staff_reg',views.add_staff_reg),
     path('login/addlogin',views.addlogin),
     path('login/',views.login),
     path('addlogin/',views.addlogin),
 
 
     path('profile/',views.profile, name='profile'),
+    path('staff_profile/',views.staff_profile, name='staff_profile'),
     path('viewusers',views.viewusers),
+    path('view_predictions/', views.view_predictions, name='view_predictions'),
+    path('add_feedback/', views.add_feedback, name='add_feedback'),
+    path('view_feedback/', views.view_feedback, name='view_feedback'),
 
     path('logout/',views.logout),
+    path('predict_potability/', views.predict_potability_view, name='predict_potability'),
+    path('prediction_history/', views.prediction_history, name='prediction_history'),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
