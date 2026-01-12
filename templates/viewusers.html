@@ -1,0 +1,32 @@
+{% load static %}
+{% block content %}
+{% include 'header.html' %}
+
+
+<br><br><br><br><br><br>
+
+
+
+<div class="container py-5">
+    <h2 class="mb-4 text-center">Registered Users</h2>
+    <div class="row justify-content-center">
+        {% for user in result %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title mb-2">{{ user.name }}</h5>
+                    <p class="card-text mb-1"><strong>Phone:</strong> {{ user.phone_number }}</p>
+                    <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p>No users found.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% load static %}
+{% block content %}
+{% include 'header.html' %}
+
+<div class="container-fluid contact bg-light py-5">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="text-center mx-auto pb-4" style="max-width: 600px;">
+                    <h4 class="text-uppercase text-primary">Login</h4>
+                    <h1 class="display-5 text-capitalize mb-3">Sign In to Your Account</h1>
+                </div>
+                {% if message %}
+                <div class="alert alert-danger text-center" role="alert">
+                    {{ message }}
+                </div>
+                {% endif %}
+                <form method="POST" action="addlogin">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 py-2">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if request.GET.registered %}
+<script>
+    alert('Registration successful! Please login.');
+</script>
+{% endif %}
+
+{% include 'footer.html' %}
+{% endblock %}
